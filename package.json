@@ -1,0 +1,14 @@
+{
+  "name": "wdd330-finalproject",
+  "version": "1.0.0",
+  "description": "Final project for WDD330 fronted web dev - Oct. 2024",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "author": "Zachariah Sutherland",
+  "dependencies": {
+  "parcel": "^2.8.3",
+  "prettier": "^2.8.4"
+  }
+}
