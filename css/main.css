@@ -1,0 +1,32 @@
+#main-header,
+#main-footer {
+    background-color: #292f3d !important;
+    color: #FCA311 !important;
+}
+
+#main-header .navbar-brand,
+#main-header .nav-link,
+#main-footer a {
+    color: #FCA311 !important;
+    transition: color 1s, transform 1s;
+}
+
+#main-header .nav-link:hover {
+    color: #ffd29e !important;
+    animation: rocking 1s ease-in-out;
+}
+
+#main-footer a:hover {
+    color: #ffd29e !important;
+}
+@keyframes rocking {
+    0% { transform: rotate(0deg); }
+    12% { transform: rotate(-2.5deg); }
+    25% { transform: rotate(-5deg); }
+    37% { transform: rotate(-2.5deg); }
+    50% { transform: rotate(0deg); }
+    62% { transform: rotate(2.5deg); }
+    75% { transform: rotate(5deg); }
+    87% { transform: rotate(2.5deg); }
+    100% { transform: rotate(0deg); }
+}
