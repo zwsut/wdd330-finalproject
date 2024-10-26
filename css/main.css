@@ -1,3 +1,7 @@
+body {
+    background-color: #e5e5e5 ; /* Consistent page background */
+}
+
 #main-header,
 #main-footer {
     background-color: #292f3d !important;

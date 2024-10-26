@@ -22,7 +22,7 @@ export function createElement(type, props = {}, children = []) {
 import logo from './images/spaceplace.jpg';
 export function loadHeaderFooter() {
   const root = document.getElementById('root');
-
+  console.log("Adding header and footer...");
   const headerHTML = `
     <header id="main-header">
       <nav class="navbar navbar-expand-lg">
@@ -45,10 +45,7 @@ export function loadHeaderFooter() {
                 <a class="nav-link fw-semibold" href="#">Space Weather</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link fw-normal" href="#">Exoplanets</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link fw-light" href="#">Newsletter</a>
+                <a class="nav-link fw-normal" href="#">Newsletter</a>
               </li>
             </ul>
           </div>
@@ -72,5 +69,41 @@ root.insertAdjacentHTML('beforeend', footerHTML)
 root.insertAdjacentHTML('afterbegin', headerHTML);
 }
 
+// get local storage values, used for pageID primarily
+export function getFromLocalStorage(key, defaultValue = null) {
+  const value = localStorage.getItem(key);
+  return value ? JSON.parse(value) : defaultValue;
+}
 
+// set local storage values
+export function setInLocalStorage(key, value) {
+  localStorage.setItem(key, JSON.stringify(value));
+}
+
+export function handleError(error) {
+  console.error('Error:', error);
+}
+
+export function clearContent(element) {
+  element.innerHTML = '';
+}
+
+export function insertContent(element, htmlContent) {
+  element.innerHTML = htmlContent;
+}
+
+export function renderTemplate(templateId, data) {
+  const template = document.getElementById(templateId).innerHTML;
+  return template.replace(/{{(.*?)}}/g, (match, prop) => data[prop.trim()] || '');
+}
+
+export function initializePageId() {
+  let pageId = getFromLocalStorage('pageId', 'home');
+
+  if (!pageId) {
+      pageId = 'home';
+      setInLocalStorage('pageId', pageId);
+  }
+  return pageId;
+}
 
