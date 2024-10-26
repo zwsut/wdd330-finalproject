@@ -37,13 +37,13 @@ async function loadAsteroidsData(date = new Date().toISOString().split('T')[0]) 
     try {
         const data = await apiRequest(url);
         const asteroids = data.near_earth_objects[date] || [];
-        renderAsteroids(asteroids);
+        renderAsteroids(asteroids, date);
     } catch (error) {
         console.error('Failed to load asteroid data:', error);
     }
 }
 
-function renderAsteroids(asteroids) {
+function renderAsteroids(asteroids, date) {
     const container = document.getElementById('asteroid-container');
     container.innerHTML = '';
 
@@ -86,9 +86,11 @@ function renderAsteroids(asteroids) {
 
     const summaryHTML = `
         <div class="alert alert-primary text-center mb-4">
-            <h4>Total Near-Earth Objects: ${asteroids.length}</h4>
+            <h4>Near-Earth Objects for ${date}</h4>
+            <p>Total Objects: ${asteroids.length}</p>
             <p>Hazardous Objects: ${hazardousCount}</p>
         </div>
     `;
     container.insertAdjacentHTML('afterbegin', summaryHTML);
 }
+
