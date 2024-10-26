@@ -5,8 +5,7 @@ export default function home() {
     const root = document.getElementById('root');
     clearContent(root);
 
-
-    // Main container with Bootstrap classes
+    // html with bootstrap styling for main section of home page
     const mainContainerHTML = `
         <div class="container my-5">
             <div class="row gx-5">
@@ -46,7 +45,6 @@ export default function home() {
     loadHeaderFooter();
 }
 
-// Function to load Image of the Day and update card info
 async function loadImageOfTheDay() {
     const apiKey = 'hOUu9YWVpurhbtNw3TsOcbLz8wuiHMG7v9UMur8i';
     const date = getQueryParameter('date') || new Date().toISOString().split('T')[0];
@@ -58,7 +56,6 @@ async function loadImageOfTheDay() {
         imageElement.src = data.url;
         imageElement.alt = data.title || 'NASA Image of the Day';
 
-        // Populate the information card
         document.getElementById('image-title').textContent = data.title;
         document.getElementById('image-copyright').textContent = data.copyright 
             ? `© ${data.copyright}` 
@@ -69,7 +66,7 @@ async function loadImageOfTheDay() {
     }
 }
 
-// Helper function to get query parameter from URL
+// retrieve parameters from url
 function getQueryParameter(name) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(name);
