@@ -45,7 +45,7 @@ export function loadHeaderFooter() {
                   <a class="nav-link fw-bold" href="#" data-page-id="asteroids">Asteroids</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link fw-semibold" href="#" data-page-id="space-weather">Space Weather</a>
+                  <a class="nav-link fw-semibold" href="#" data-page-id="weather">Space Weather</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link fw-normal" href="#" data-page-id="newsletter">Newsletter</a>
@@ -115,12 +115,10 @@ export function insertContent(element, htmlContent) {
 }
 
 // not actually doing anything now, keeping it in case it might be useful later
-export function renderTemplate(template) {
-  if (!template) {
-      console.error('Empty template string provided');
-      return '';
-  }
-  return template;
+export function renderTemplate(templateString) {
+  const template = document.createElement('template');
+  template.innerHTML = templateString.trim();
+  return template.content.firstChild;
 }
 
 // to get page id from local storage, or sets to home if none set

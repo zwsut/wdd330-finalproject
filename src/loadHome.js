@@ -1,7 +1,7 @@
 import { insertContent, clearContent, loadHeaderFooter } from './utils.mjs';
 import { apiRequest } from './externalServices.js';
 
-export default function home() {
+export default function loadHome() {
     const root = document.getElementById('root');
     clearContent(root);
     document.body.className = '';
