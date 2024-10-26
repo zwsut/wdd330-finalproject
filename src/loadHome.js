@@ -4,6 +4,8 @@ import { apiRequest } from './externalServices.js';
 export default function home() {
     const root = document.getElementById('root');
     clearContent(root);
+    document.body.className = '';
+    document.body.classList.add('home-page');
 
     // html with bootstrap styling for main section of home page
     const mainContainerHTML = `

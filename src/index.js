@@ -8,9 +8,9 @@ import weather from './loadWeather.js';
 loadHeaderFooter();
 
 window.home = home;
-window.loadAsteroids = asteroids;
-window.loadNewsletter = newsletter;
-window.loadWeather = weather;
+window.asteroids = asteroids;
+window.newsletter = newsletter;
+window.weather = weather;
 
 document.addEventListener('DOMContentLoaded', () => {
     const pageId = initializePageId();
