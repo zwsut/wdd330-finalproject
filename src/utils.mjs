@@ -23,64 +23,63 @@ import logo from './images/spaceplace.jpg';
 
 // loads header and footer - included in this is handling for selecting navbar icons, updated pageID and refreshes
 export function loadHeaderFooter() {
-    const root = document.getElementById('root');
-    // console.log("Adding header and footer...");
+  const root = document.getElementById('root');
 
-    const headerHTML = `
-      <header id="main-header">
-        <nav class="navbar navbar-expand-lg">
-          <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-              <img src="${logo}" alt="The Space Place Logo" width="100" height="100">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                  <a class="nav-link active fw-bolder" aria-current="page" href="#" data-page-id="home">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link fw-bold" href="#" data-page-id="asteroids">Asteroids</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link fw-semibold" href="#" data-page-id="weather">Space Weather</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link fw-normal" href="#" data-page-id="newsletter">Newsletter</a>
-                </li>
-              </ul>
-            </div>
+  const headerHTML = `
+    <header id="main-header">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="${logo}" alt="The Space Place Logo" width="100" height="100">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active fw-bold" aria-current="page" href="#" data-page-id="home">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link fw-normal" href="#" data-page-id="asteroids">Asteroids</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link fw-normal" href="#" data-page-id="weather">Space Weather</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link fw-light" href="#" data-page-id="newsletter">Newsletter</a>
+              </li>
+            </ul>
           </div>
-        </nav>
-      </header>
-    `;
-
-    const footerHTML = `
-      <footer id="main-footer" class="bg-dark text-light py-4">
-        <div class="container text-center">
-          <p>&copy; 2024 Zachariah Sutherland. All Rights Reserved.</p>
-          <p>All data courtesy of NASA.</p>        
-          <ul class="list-inline">
-            <li class="list-inline-item"><a href="#">Newsletter</a></li>
-            <li class="list-inline-item"><a href="#">Contact Us</a></li>
-          </ul>
         </div>
-      </footer>
-    `;
+      </nav>
+    </header>
+  `;
 
-    root.insertAdjacentHTML('afterbegin', headerHTML);
-    root.insertAdjacentHTML('beforeend', footerHTML);
+  const footerHTML = `
+    <footer id="main-footer" class="bg-dark text-light py-4">
+      <div class="container text-center">
+        <p>&copy; 2024 Zachariah Sutherland. All Rights Reserved.</p>
+        <p>All data courtesy of NASA.</p>        
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="#" data-page-id="newsletter">Newsletter</a></li>
+          <li class="list-inline-item"><a href="https://www.linkedin.com/in/zach-sutherland/" target="_blank">Contact Us</a></li>
+        </ul>
+      </div>
+    </footer>
+  `;
 
-    document.querySelectorAll('[data-page-id]').forEach(link => {
-        link.addEventListener('click', (event) => {
-            event.preventDefault();
-            const pageId = event.target.getAttribute('data-page-id');
-            localStorage.setItem('pageId', pageId);
-            location.reload();
-        });
-    });
+  root.insertAdjacentHTML('afterbegin', headerHTML);
+  root.insertAdjacentHTML('beforeend', footerHTML);
+
+  document.querySelectorAll('[data-page-id]').forEach(link => {
+      link.addEventListener('click', (event) => {
+          event.preventDefault();
+          const pageId = event.target.getAttribute('data-page-id');
+          localStorage.setItem('pageId', pageId);
+          location.reload();
+      });
+  });
 }
 
 // gets value from local storage
@@ -114,7 +113,7 @@ export function insertContent(element, htmlContent) {
   element.innerHTML = htmlContent;
 }
 
-// not actually doing anything now, keeping it in case it might be useful later
+// templates
 export function renderTemplate(templateString) {
   const template = document.createElement('template');
   template.innerHTML = templateString.trim();
@@ -132,3 +131,14 @@ export function initializePageId() {
   return pageId;
 }
 
+export function formatDateTime(dateString) {
+  const date = new Date(dateString);
+  return date.toLocaleString('en-US', {
+      month: '2-digit',
+      day: '2-digit',
+      year: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true
+  });
+}
