@@ -1,11 +1,9 @@
-import { insertContent, clearContent, loadHeaderFooter, renderTemplate, createElement } from './utils.mjs';
+import { insertContent, clearContent, loadHeaderFooter, renderTemplate, createElement, setInLocalStorage } from './utils.mjs';
 import { apiRequest } from './externalServices.js';
 
 export default function loadAsteroids() {
     document.body.className = '';
     document.body.classList.add('asteroids-page');
-    document.body.style.backgroundColor = '#0c1b3a';
-    document.body.style.color = '#ffffff';
 
     const root = document.getElementById('root');
     clearContent(root);
@@ -35,6 +33,7 @@ export default function loadAsteroids() {
 }
 
 async function loadAsteroidsData(date = new Date().toISOString().split('T')[0]) {
+    setInLocalStorage('pageId', 'asteroids');
     const container = document.getElementById('asteroid-container');
     clearContent(container);
     

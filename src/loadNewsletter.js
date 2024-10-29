@@ -1,9 +1,9 @@
-import { insertContent, clearContent, loadHeaderFooter } from './utils.mjs';
+import { insertContent, clearContent, loadHeaderFooter, setInLocalStorage } from './utils.mjs';
 
 export default function loadNewsletter() {
     document.body.className = '';
     document.body.classList.add('newsletter-page');
-
+    setInLocalStorage('pageId', 'newsletter');
     const root = document.getElementById('root');
     clearContent(root);
 
@@ -38,8 +38,7 @@ export default function loadNewsletter() {
     if (!isSignedUp) {
         document.getElementById('newsletter-form').addEventListener('submit', (event) => {
             event.preventDefault();
-
-            localStorage.setItem('isSignedUp', 'true');
+            setInLocalStorage('isSignedUp', 'true');
 
             loadNewsletter();
         });

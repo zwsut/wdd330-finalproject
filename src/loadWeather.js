@@ -1,10 +1,10 @@
-import { insertContent, clearContent, loadHeaderFooter, renderTemplate, createElement, formatDateTime } from './utils.mjs';
+import { insertContent, clearContent, loadHeaderFooter, renderTemplate, createElement, formatDateTime, setInLocalStorage } from './utils.mjs';
 import { apiRequest } from './externalServices.js';
 
 export default function loadWeather() {
     document.body.className = '';
     document.body.classList.add('weather-page');
-
+    setInLocalStorage('pageId', 'weather');
     const root = document.getElementById('root');
     clearContent(root);
 

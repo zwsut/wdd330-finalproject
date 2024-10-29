@@ -1,4 +1,4 @@
-import { insertContent, clearContent, loadHeaderFooter } from './utils.mjs';
+import { insertContent, clearContent, loadHeaderFooter, setInLocalStorage } from './utils.mjs';
 import { apiRequest } from './externalServices.js';
 
 export default function loadHome() {
@@ -6,6 +6,7 @@ export default function loadHome() {
     clearContent(root);
     document.body.className = '';
     document.body.classList.add('home-page');
+    setInLocalStorage('pageId', 'home');
 
     // html with bootstrap styling for main section of home page
     const mainContainerHTML = `
